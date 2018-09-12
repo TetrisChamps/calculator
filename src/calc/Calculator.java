@@ -32,15 +32,40 @@ class Calculator {
         if (expr.length() == 0) {
             return NaN;
         }
-        // TODO List<String> tokens = tokenize(expr);
-        // TODO List<String> postfix = infix2Postfix(tokens);
-        // TODO double result = evalPostfix(postfix);
-        return 0; // result;
+        List<String> tokens = tokenize(expr);
+        List<String> postfix = infix2Postfix(tokens);
+        double result = evalPostfix(postfix);
+        return result; // result;
     }
 
     // ------  Evaluate RPN expression -------------------
 
     // TODO Eval methods
+
+    double evalPostfix(List<String> postfix) {
+        Stack<String> stack = new Stack<>();
+        for (String token : postfix) {
+            if (isOperator(token)) {
+                if (stack.size() < 2) {
+                    throw new IllegalArgumentException(MISSING_OPERAND);
+                }
+                try {
+                    double left = Double.parseDouble(stack.pop());
+                    double right = Double.parseDouble(stack.pop());
+                    double result = applyOperator(token, left, right);
+                    stack.push(Double.toString(result));
+                } catch (Exception e) {
+                    throw e;
+                }
+            } else {
+                stack.push(token);
+            }
+        }
+        if (stack.size() != 1) {
+            throw new IllegalArgumentException(MISSING_OPERATOR);
+        }
+        return Double.parseDouble(stack.pop());
+    }
 
     double applyOperator(String op, double d1, double d2) {
         switch (op) {
@@ -65,12 +90,45 @@ class Calculator {
 
     // TODO Methods
 
+    List<String> infix2Postfix(List<String> tokens) {
+        List<String> postfix = new LinkedList<>();
+        Stack<String> operatorStack = new Stack<>();
+        for (String token : tokens) {
+            if (isOperator(token)) {
+                // Is operator
+                while (operatorStack.size() > 0 && OPERATORS.contains(operatorStack.peek())) {
+                    if (getPrecedence(operatorStack.peek()) >= getPrecedence(token) && !operatorStack.peek().equals("^")) {
+                        postfix.add(operatorStack.pop());
+                    } else {
+                        break;
+                    }
+                }
+                operatorStack.push(token);
+            } else if (token.equals("(")) {
+                // Left parenthesis
+                operatorStack.push("(");
+            } else if (token.equals(")")) {
+                // Right parenthesis
+                while (operatorStack.size() > 0 && !operatorStack.peek().equals("(")) {
+                    postfix.add(operatorStack.pop());
+                }
+                if (operatorStack.size() > 0) {
+                    operatorStack.pop();
+                }
+            } else {
+                // Number
+                postfix.add(token);
+            }
+        }
+        while (operatorStack.size() > 0) {
+            postfix.add(operatorStack.pop());
+        }
+        return postfix;
+    }
 
-
-
-
-
-
+    boolean isOperator(String token) {
+        return OPERATORS.contains(token);
+    }
 
     int getPrecedence(String op) {
         if ("+-".contains(op)) {
@@ -104,4 +162,28 @@ class Calculator {
 
     // TODO Methods to tokenize
 
+    List<String> tokenize(String expression) {
+        List<String> tokens = new LinkedList<>();
+        StringBuilder token = new StringBuilder();
+        for (int i = 0; i < expression.length(); ++i) {
+            if (expression.charAt(i) == ' ') {
+                if (token.length() > 0) {
+                    tokens.add(token.toString());
+                    token.setLength(0);
+                }
+            } else if ((OPERATORS + "()").indexOf(expression.charAt(i)) >= 0) {
+                if (token.length() > 0) {
+                    tokens.add(token.toString());
+                    token.setLength(0);
+                }
+                tokens.add(Character.toString(expression.charAt(i)));
+            } else {
+                token.append(expression.charAt(i));
+            }
+        }
+        if (token.length() > 0) {
+            tokens.add(token.toString());
+        }
+        return tokens;
+    }
 }
