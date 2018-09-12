@@ -33,6 +33,7 @@ class Calculator {
             return NaN;
         }
         List<String> tokens = tokenize(expr);
+        fixMultiplication(tokens);
         List<String> postfix = infix2Postfix(tokens);
         double result = evalPostfix(postfix);
         return result; // result;
@@ -185,5 +186,15 @@ class Calculator {
             tokens.add(token.toString());
         }
         return tokens;
+    }
+
+    void fixMultiplication(List<String> tokens) {
+        int i = 0;
+        while (i < tokens.size() - 1) {
+            if (!isOperator(tokens.get(i)) && !tokens.get(i).contains("(") && !isOperator(tokens.get(i + 1)) && !tokens.get(i + 1).contains(")")) {
+                tokens.add(i + 1, "*");
+            }
+            ++i;
+        }
     }
 }
