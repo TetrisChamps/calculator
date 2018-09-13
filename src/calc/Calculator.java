@@ -33,8 +33,8 @@ class Calculator {
             return NaN;
         }
         List<String> tokens = tokenize(expr);
-        fixMultiplication(tokens);
-        List<String> postfix = infix2Postfix(tokens);
+        List<String> multiplicationFix = fixMultiplication(tokens);
+        List<String> postfix = infix2Postfix(multiplicationFix);
         double result = evalPostfix(postfix);
         return result; // result;
     }
@@ -97,8 +97,8 @@ class Calculator {
         for (String token : tokens) {
             if (isOperator(token)) {
                 // Is operator
-                while (operatorStack.size() > 0 && OPERATORS.contains(operatorStack.peek())) {
-                    if (getPrecedence(operatorStack.peek()) >= getPrecedence(token) && !operatorStack.peek().equals("^")) {
+                while (operatorStack.size() > 0 && isOperator(operatorStack.peek())) {
+                    if (getPrecedence(operatorStack.peek()) >= getPrecedence(token) && !token.equals("^")) {
                         postfix.add(operatorStack.pop());
                     } else {
                         break;
@@ -112,6 +112,12 @@ class Calculator {
                 // Right parenthesis
                 while (operatorStack.size() > 0 && !operatorStack.peek().equals("(")) {
                     postfix.add(operatorStack.pop());
+
+                    // If size is 0 after pop and now left parentheses is found,
+                    // the expression is missing an operator.
+                    if (operatorStack.size() == 0) {
+                        throw new IllegalArgumentException(MISSING_OPERATOR);
+                    }
                 }
                 if (operatorStack.size() > 0) {
                     operatorStack.pop();
@@ -188,13 +194,34 @@ class Calculator {
         return tokens;
     }
 
-    void fixMultiplication(List<String> tokens) {
-        int i = 0;
-        while (i < tokens.size() - 1) {
-            if (!isOperator(tokens.get(i)) && !tokens.get(i).contains("(") && !isOperator(tokens.get(i + 1)) && !tokens.get(i + 1).contains(")")) {
-                tokens.add(i + 1, "*");
+    List<String> fixMultiplication(List<String> inTokens) {
+        List<String> outTokens = new LinkedList<>();
+        boolean firstIteration = true;
+        String previous = "";
+        for (String token : inTokens) {
+            if (firstIteration) {
+                outTokens.add(token);
+                previous = token;
+                firstIteration = false;
+            } else {
+                if (((isNumber(previous) || previous.contains(")")) && token.contains("(")) ||
+                        ((isNumber(token) || token.contains("(")) && previous.contains(")"))) {
+                    outTokens.add("*");
+                }
+                outTokens.add(token);
+                previous = token;
             }
-            ++i;
+
+        }
+        return outTokens;
+    }
+
+    private boolean isNumber(String string) {
+        try {
+            Double.parseDouble(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 }

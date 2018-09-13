@@ -10,7 +10,7 @@ import static java.lang.System.out;
 /**
  * This is a test program for the Calculator (testing a Calculator object)
  * It should output true for everything
- *
+ * <p>
  * Right click and run ...
  */
 class Test {
@@ -26,21 +26,22 @@ class Test {
         // Here you could write your own test for any "small" helper methods
 
 
-
         // Uncomment line by line to test
 
         // Tokenization ---------------------------
-        /*t("1 + 10", "1 + 10");  // Arguments are input and expected output
+
+        System.out.println("Tokenization");
+        t("1 + 10", "1 + 10");  // Arguments are input and expected output
         t("1+ 10", "1 + 10");   // Expected is in fact a list [ "1", "+", "10"]
         t("1 +10", "1 + 10");
         t("1+10", "1 + 10");
         t("(1+10) ", "( 1 + 10 )");  // List is [ "(", "1", "+", "10", ")" ]
         t("2 *( 1+10) ", "2 * ( 1 + 10 )");
         t("(1 +2) /2 *( 1+10) ", "( 1 + 2 ) / 2 * ( 1 + 10 )");
-        */
+
 
         // Infix to postfix -----------------------
-        /*
+        System.out.println("\nInfix to postfix");
         i2p("1+10", "1 10 +");
         i2p("1+2+3", "1 2 + 3 +");
         i2p("1+2-3", "1 2 + 3 -");
@@ -52,14 +53,16 @@ class Test {
         i2p("4^3*2", "4 3 ^ 2 *");
         i2p("(1+2)*3", "1 2 + 3 *");
         i2p("2^(1+1)", "2 1 1 + ^");
-        */
+
 
         // Evaluation ------------------------------
-        /*
+
         // A value
+        System.out.println("\nValue");
         e("123", 123);
 
         // Basic operations
+        System.out.println("\nBasic operations");
         e("1 + 10", 11);
         e("1 + 0", 1);
         e("1 - 10", -9);  // Input may not be negative but output may
@@ -72,11 +75,13 @@ class Test {
         e("2 ^ 0 ", 1);
 
         // Associativity
+        System.out.println("\nAssociativity");
         e("10 - 5 - 2", 3);  // (10-5)-2
         e("20 / 2 / 2", 5);  // (20/2)/2
         e("4 ^ 2 ^ 2", 256);  // 4^(2^2)
 
         // Precedence
+        System.out.println("\nPrecedence");
         e("3 * 10 + 2", 32);
         e("3 + 10 * 2", 23);
         e("30 / 3 + 2", 12);
@@ -85,6 +90,7 @@ class Test {
         e("3 ^ 2 * 2", 18);
 
         // Parentheses
+        System.out.println("\nParentheses");
         e("10 - (5 - 2)", 7);
         e("20 / (10 / 2)", 4);
         e("(3 ^ 2) ^ 2", 81);
@@ -95,31 +101,34 @@ class Test {
         e(" ((((1 + 1))) * 2)", 4);
 
         // Mix priority and right and left associativity
+        System.out.println("\nMix priority and right and left associativity");
         e(" 1 ^ 1 ^ 1 ^ 1  - 1", 0);
         e(" 4 - 2 - 1 ^ 2 ", 1);
 
         // Exceptions -----------------------------------
+        System.out.println("\nExceptions");
         try {
             e("1 / 0 ", 0);   // 0 just a dummy
         } catch (IllegalArgumentException e) {
-            out.println(e.getMessage().equals(Calculator.DIV_BY_ZERO));
+            print(e.getMessage(), e.getMessage().equals(Calculator.DIV_BY_ZERO));
         }
         try {
             e("1 + 2 + ", 0);
         } catch (IllegalArgumentException e) {
-            out.println(e.getMessage().equals(Calculator.MISSING_OPERAND));
+            print(e.getMessage(), e.getMessage().equals(Calculator.MISSING_OPERAND));
         }
+        // This should return false if multiplication fix ("5(4+4)" => "5*(4+4)" or "4 4" => "4*4") is in effect.
         try {
             e("12 3", 0);
         } catch (IllegalArgumentException e) {
-            out.println(e.getMessage().equals(Calculator.MISSING_OPERATOR));
+            print(e.getMessage(), e.getMessage().equals(Calculator.MISSING_OPERATOR));
         }
         try {
             e("1 + 2)", 0);
         } catch (IllegalArgumentException e) {
-            out.println(e.getMessage().equals(Calculator.MISSING_OPERATOR));
+            print(e.getMessage(), e.getMessage().equals(Calculator.MISSING_OPERATOR));
         }
-        */
+
 
     }
 
@@ -130,23 +139,29 @@ class Test {
     void t(String expr, String expected) {
         List<String> list = calculator.tokenize(expr);
         String result = String.join(" ", list);
-        out.println(result.equals(expected));
+        print(result, result.equals(expected));
     }
 
     // Infix 2 postfix
     void i2p(String infix, String expected) {
         List<String> tokens = calculator.tokenize(infix);
-        List<String> postfix = calculator.infix2Postfix(tokens);
+        List<String> multiplicationFix = calculator.fixMultiplication(tokens);
+        List<String> postfix = calculator.infix2Postfix(multiplicationFix);
         String result = String.join(" ", postfix);
-        out.println(result.equals(expected));
+        print(result, result.equals(expected));
     }
 
     // Evaluation
     void e(String infix, double expected) {
         List<String> tokens = calculator.tokenize(infix);
-        List<String> postfix = calculator.infix2Postfix(tokens);
+        List<String> multiplicationFix = calculator.fixMultiplication(tokens);
+        List<String> postfix = calculator.infix2Postfix(multiplicationFix);
         double result = calculator.evalPostfix(postfix);
-        out.println(result == expected);
+        print(Double.toString(result), result == expected);
+    }
+
+    void print(String result, boolean pass) {
+        System.out.println(pass + ", expression: " + result);
     }
 
 }
