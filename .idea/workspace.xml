@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd7f2c4-fa5b-4b46-a4d9-712c62e24176" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/calc/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/calc/Calculator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,12 +26,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4591" />
+          <entry key="java" value="4882" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4591" />
+          <entry key="JAVA" value="4882" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -50,7 +51,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/calc/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2567">
+            <state relative-caret-position="121">
               <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
             </state>
           </provider>
@@ -59,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calc/Calculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="48" column="36" lean-forward="true" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+            <state relative-caret-position="238">
+              <caret line="101" column="17" lean-forward="true" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
               <folding>
                 <element signature="e#4533#4534#0" expanded="true" />
                 <element signature="e#4581#4582#0" expanded="true" />
@@ -329,7 +330,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12126000" />
+    <option name="totallyTimeSpent" value="14523000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -354,7 +355,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3275488" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3262295" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -473,15 +474,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calc/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2567">
+        <state relative-caret-position="121">
           <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calc/Calculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="48" column="36" lean-forward="true" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+        <state relative-caret-position="238">
+          <caret line="101" column="17" lean-forward="true" selection-start-line="101" selection-start-column="17" selection-end-line="101" selection-end-column="17" />
           <folding>
             <element signature="e#4533#4534#0" expanded="true" />
             <element signature="e#4581#4582#0" expanded="true" />

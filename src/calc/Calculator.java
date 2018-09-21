@@ -97,12 +97,8 @@ class Calculator {
         for (String token : tokens) {
             if (isOperator(token)) {
                 // Operator
-                while (!operatorStack.empty() && isOperator(operatorStack.peek())) {
-                    if (getPrecedence(operatorStack.peek()) >= getPrecedence(token) && !token.equals("^")) {
-                        postfix.add(operatorStack.pop());
-                    } else {
-                        break;
-                    }
+                while (!operatorStack.empty() && shouldStackBePopped(operatorStack.peek(), token)) {
+                    postfix.add(operatorStack.pop());
                 }
                 operatorStack.push(token);
             } else if (token.equals("(")) {
@@ -134,6 +130,15 @@ class Calculator {
             postfix.add(operatorStack.pop());
         }
         return postfix;
+    }
+
+    boolean shouldStackBePopped(String operator, String token) {
+        if (getPrecedence(operator) > getPrecedence(token) ||
+                (getPrecedence(operator) == getPrecedence(token) &&
+                        getAssociativity(operator) == Assoc.LEFT)) {
+            return true;
+        }
+        return false;
     }
 
     boolean isOperator(String token) {
