@@ -96,8 +96,8 @@ class Calculator {
         Stack<String> operatorStack = new Stack<>();
         for (String token : tokens) {
             if (isOperator(token)) {
-                // Is operator
-                while (operatorStack.size() > 0 && isOperator(operatorStack.peek())) {
+                // Operator
+                while (!operatorStack.empty() && isOperator(operatorStack.peek())) {
                     if (getPrecedence(operatorStack.peek()) >= getPrecedence(token) && !token.equals("^")) {
                         postfix.add(operatorStack.pop());
                     } else {
@@ -110,24 +110,27 @@ class Calculator {
                 operatorStack.push("(");
             } else if (token.equals(")")) {
                 // Right parenthesis
-                while (operatorStack.size() > 0 && !operatorStack.peek().equals("(")) {
+                while (!operatorStack.empty() && !operatorStack.peek().equals("(")) {
                     postfix.add(operatorStack.pop());
 
                     // If size is 0 after pop and now left parentheses is found,
                     // the expression is missing an operator.
-                    if (operatorStack.size() == 0) {
+                    if (operatorStack.empty()) {
                         throw new IllegalArgumentException(MISSING_OPERATOR);
                     }
                 }
-                if (operatorStack.size() > 0) {
+                if (!operatorStack.empty()) {
                     operatorStack.pop();
                 }
             } else {
                 // Number
+                if (!isNumber(token)) {
+                    throw new IllegalArgumentException(MISSING_OPERAND);
+                }
                 postfix.add(token);
             }
         }
-        while (operatorStack.size() > 0) {
+        while (!operatorStack.empty()) {
             postfix.add(operatorStack.pop());
         }
         return postfix;

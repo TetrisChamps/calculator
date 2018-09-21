@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ffd7f2c4-fa5b-4b46-a4d9-712c62e24176" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/calc/calc/Calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/calc/calc/Calculator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/calc/calc/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/calc/calc/Test.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/calc/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/calc/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/calc/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/calc/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,12 +25,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="4444" />
+          <entry key="java" value="4591" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4444" />
+          <entry key="JAVA" value="4591" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -54,12 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/calc/Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="157" selection-start-line="157" selection-end-line="157" />
-              <folding>
-                <element signature="e#4620#4621#0" expanded="true" />
-                <element signature="e#4656#4657#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2567">
+              <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -67,8 +59,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/calc/Calculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="202" selection-start-line="202" selection-end-line="202" />
+            <state relative-caret-position="191">
+              <caret line="48" column="36" lean-forward="true" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+              <folding>
+                <element signature="e#4533#4534#0" expanded="true" />
+                <element signature="e#4581#4582#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assignment3.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
+            <state relative-caret-position="884">
               <caret line="52" column="73" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
             </state>
           </provider>
@@ -85,7 +81,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/calc/REPL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
+            <state relative-caret-position="425">
               <caret line="30" selection-start-line="30" selection-end-line="30" />
             </state>
           </provider>
@@ -97,6 +93,7 @@
     <findStrings>
       <find>OPERATORS</find>
       <find>OPERATORS.</find>
+      <find>size()</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,6 +127,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -153,8 +152,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,7 +329,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11742000" />
+    <option name="totallyTimeSpent" value="12126000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -344,10 +341,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2552" y="152" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19296375" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19364598" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Nl-Palette" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -455,7 +452,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/assignment3.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
+        <state relative-caret-position="884">
           <caret line="52" column="73" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
         </state>
       </provider>
@@ -469,26 +466,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calc/REPL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
+        <state relative-caret-position="425">
           <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calc/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="157" selection-start-line="157" selection-end-line="157" />
-          <folding>
-            <element signature="e#4620#4621#0" expanded="true" />
-            <element signature="e#4656#4657#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2567">
+          <caret line="156" column="47" selection-start-line="156" selection-start-column="47" selection-end-line="156" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/calc/Calculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="202" selection-start-line="202" selection-end-line="202" />
+        <state relative-caret-position="191">
+          <caret line="48" column="36" lean-forward="true" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
+          <folding>
+            <element signature="e#4533#4534#0" expanded="true" />
+            <element signature="e#4581#4582#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
