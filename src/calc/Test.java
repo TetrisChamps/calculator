@@ -16,7 +16,7 @@ import static java.lang.System.out;
 class Test {
 
     public static void main(String[] args) {
-        new Test().test();
+       new Test().test();
     }
 
     final Calculator calculator = new Calculator();
@@ -30,17 +30,17 @@ class Test {
         // Uncomment line by line to test
 
         // Tokenization ---------------------------
-        /*t("1 + 10", "1 + 10");  // Arguments are input and expected output
+
+        t("1 + 10", "1 + 10");  // Arguments are input and expected output
         t("1+ 10", "1 + 10");   // Expected is in fact a list [ "1", "+", "10"]
         t("1 +10", "1 + 10");
         t("1+10", "1 + 10");
-        t("(1+10) ", "( 1 + 10 )");  // List is [ "(", "1", "+", "10", ")" ]
+        t("( 1 + 10 )", "( 1 + 10 )");  // List is [ "(", "1", "+", "10", ")" ]
         t("2 *( 1+10) ", "2 * ( 1 + 10 )");
         t("(1 +2) /2 *( 1+10) ", "( 1 + 2 ) / 2 * ( 1 + 10 )");
-        */
+
 
         // Infix to postfix -----------------------
-        /*
         i2p("1+10", "1 10 +");
         i2p("1+2+3", "1 2 + 3 +");
         i2p("1+2-3", "1 2 + 3 -");
@@ -52,10 +52,10 @@ class Test {
         i2p("4^3*2", "4 3 ^ 2 *");
         i2p("(1+2)*3", "1 2 + 3 *");
         i2p("2^(1+1)", "2 1 1 + ^");
-        */
+
 
         // Evaluation ------------------------------
-        /*
+
         // A value
         e("123", 123);
 
@@ -119,14 +119,39 @@ class Test {
         } catch (IllegalArgumentException e) {
             out.println(e.getMessage().equals(Calculator.MISSING_OPERATOR));
         }
-        */
 
+        // isLeftAssociative
+        iLA("+", true);
+        iLA("-", true);
+        iLA("/", true);
+        iLA("*", true);
+        iLA("^", false);
+
+        // isEqualPrecedence
+        iEP("+", "-", true );
+        iEP("*", "/", true );
+        iEP("+", "^", false);
+        iEP("+", "/", false);
+
+        // hasEO(expressionOperator)LowerPrecedence
+        hEOLP("+", "*", true );
+        hEOLP("-", "/", true );
+        hEOLP("^", "+", false);
+        hEOLP("*", "-", false);
+
+        // shouldOperatorStackBePopped
+        sOSBP("+", "-", true );
+        sOSBP("-", "-", true );
+        sOSBP("*", "/", true );
+        sOSBP("*", "-", false);
+        sOSBP("^", "^", false);
     }
 
 
     // ------- Below are helper methods for testing NOTHING to do here -------------------
 
     // t for tokenize, a very short name, lazy, avoid typing ...
+
     void t(String expr, String expected) {
         List<String> list = calculator.tokenize(expr);
         String result = String.join(" ", list);
@@ -138,6 +163,7 @@ class Test {
         List<String> tokens = calculator.tokenize(infix);
         List<String> postfix = calculator.infix2Postfix(tokens);
         String result = String.join(" ", postfix);
+        //System.out.println(result + " Expect " + expected);
         out.println(result.equals(expected));
     }
 
@@ -148,5 +174,30 @@ class Test {
         double result = calculator.evalPostfix(postfix);
         out.println(result == expected);
     }
+
+    // isLeftAssociative
+    void iLA(String operator, Boolean expected){
+        boolean result = calculator.isLeftAssociative(operator);
+        System.out.println(result == expected);
+    }
+
+    // isEqualPrecedence
+    void iEP(String expressionOperator, String stackOperator, boolean expected){
+        boolean result = calculator.isEqualPrecendece(expressionOperator, stackOperator);
+        System.out.println(result == expected);
+    }
+
+    // hasEOLowerPrecedence
+    void hEOLP(String expressionOperator, String stackOperator, boolean expected){
+        boolean result = calculator.hasEOLowerPrecedence(expressionOperator, stackOperator);
+        System.out.println(result == expected);
+    }
+
+    // shouldOperatorStackBePopped
+    void sOSBP(String expressionOperator, String stackOperator, boolean expected){
+        boolean result = calculator.shouldOperatorStackBePopped(expressionOperator, stackOperator);
+        System.out.println(result == expected);
+    }
+
 
 }
