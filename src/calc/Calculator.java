@@ -97,7 +97,7 @@ class Calculator {
         for (String token : tokens) {
             if (isOperator(token)) {
                 // Operator
-                while (!operatorStack.empty() && shouldStackBePopped(operatorStack.peek(), token)) {
+                while (!operatorStack.empty() && !operatorStack.peek().equals("(") && shouldStackBePopped(operatorStack.peek(), token)) {
                     postfix.add(operatorStack.pop());
                 }
                 operatorStack.push(token);
